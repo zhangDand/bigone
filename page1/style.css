@@ -1,0 +1,115 @@
+html,body,*{
+	margin:0;
+	padding:0;
+	font: 12px 'microsoft yahei';
+}
+
+/* ----------message-----------*/
+
+.message{
+	position: relative;
+	width: 100%;
+	height: 36px;
+	padding: 0 206px;
+	box-sizing: border-box;
+	color: #333333;
+	background-color: #f3f3f3;
+	font:12px/36px 'microsoft yahei';
+	white-space: nowrap;
+}
+.message a{
+	color: #21a557;
+	margin-left: 10px;
+	text-decoration: none;
+}
+.message .close{
+	display: inline-block;
+	position:absolute;
+	line-height: 36px;
+	right:206px;
+	cursor: pointer;
+}
+
+/* ---------header样式-------------- */
+header{
+	position: relative;
+	box-sizing: border-box;
+	width: 100%;
+	padding: 0 206px;
+}
+header *,header li{
+	display: inline-block;
+	line-height: 22px;
+	text-align: center;
+	vertical-align:middle;
+}
+header h1{
+	font:normal normal 22px/28px 'microsoft yahei';
+}
+header em{
+	font: normal 28px/28px 'gill sans mt';
+	color: #39a030;
+}
+
+header span{
+	height: 21px;
+	font-family: '宋体';
+	vertical-align: sub;
+}
+header .focus-off{
+	display: none;
+	width: 54px;
+	border-radius:2px;
+	margin:0 0 0 30px;
+	background-color: #21a557;
+	color:#fff;
+	cursor: pointer;
+}
+header .focus-off:before{
+	content: "+";
+	font-family: 'microsoft yahei';
+	margin-right: 2px;
+}
+header .focus-off:hover{
+	background-color: #2fb556;
+}
+header .focus-on{
+	margin:0 0 0 30px;
+	border:1px solid #efefef;
+	border-radius:2px;
+	padding: 0 5px;
+	background-color: #f8f8f8;
+}
+header .focus-on span{
+	vertical-align: baseline;
+	color: #333333;
+}
+header .cancel{
+	color:#999999;
+	cursor: pointer;
+}
+header .cancel:hover{
+	color: #21a557;
+	text-decoration: underline;
+}
+header .fans{
+	margin:0 7px 0 14px;
+}
+
+header ul{
+	position: absolute;
+	right:206px;
+	bottom:0px;
+}
+header li a{
+	margin:0 27px;
+	font:16px 'microsoft yahei' ;
+	text-decoration: none; 
+	color: #666666;
+}
+header li a:hover{
+	color:#39a030;
+}
+
+
+
