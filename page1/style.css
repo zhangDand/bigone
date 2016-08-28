@@ -4,59 +4,63 @@ html,body,*{
 	font: 12px 'microsoft yahei';
 }
 
+
 /* ----------message-----------*/
 
 .message{
-	position: relative;
 	width: 100%;
 	height: 36px;
-	padding: 0 206px;
-	box-sizing: border-box;
 	color: #333333;
 	background-color: #f3f3f3;
-	font:12px/36px 'microsoft yahei';
-	white-space: nowrap;
+	/*font:12px/36px 'microsoft yahei';*/
 }
-.message a{
+.m-message{
+	position: relative;
+	display: table;
+	margin:0 auto;
+	width: 1000px;
+	line-height: 36px;
+}
+.m-message a{
 	color: #21a557;
 	margin-left: 10px;
 	text-decoration: none;
 }
-.message .close{
+.m-message .close{
 	display: inline-block;
 	position:absolute;
 	line-height: 36px;
-	right:206px;
+	right:0px;
 	cursor: pointer;
 }
 
 /* ---------header样式-------------- */
-header{
+.header{
 	position: relative;
-	box-sizing: border-box;
-	width: 100%;
-	padding: 0 206px;
+	display: table;
+	width:1000px;
+	margin: 30px auto 37px auto;
 }
-header *,header li{
+.header *,.header li{
 	display: inline-block;
 	line-height: 22px;
 	text-align: center;
 	vertical-align:middle;
 }
-header h1{
+.header h1{
 	font:normal normal 22px/28px 'microsoft yahei';
 }
-header em{
+.header em{
 	font: normal 28px/28px 'gill sans mt';
 	color: #39a030;
 }
 
-header span{
+.header span{
 	height: 21px;
 	font-family: '宋体';
 	vertical-align: sub;
 }
-header .focus-off{
+.header .focus-off{
 	display: none;
 	width: 54px;
 	border-radius:2px;
@@ -65,51 +69,111 @@ header .focus-off{
 	color:#fff;
 	cursor: pointer;
 }
-header .focus-off:before{
+.header .focus-off:before{
 	content: "+";
 	font-family: 'microsoft yahei';
 	margin-right: 2px;
 }
-header .focus-off:hover{
+.header .focus-off:hover{
 	background-color: #2fb556;
 }
-header .focus-on{
+.header .focus-on{
 	margin:0 0 0 30px;
 	border:1px solid #efefef;
 	border-radius:2px;
 	padding: 0 5px;
 	background-color: #f8f8f8;
 }
-header .focus-on span{
+.header .focus-on span{
 	vertical-align: baseline;
 	color: #333333;
 }
-header .cancel{
+.header .cancel{
 	color:#999999;
 	cursor: pointer;
 }
-header .cancel:hover{
+.header .cancel:hover{
 	color: #21a557;
 	text-decoration: underline;
 }
-header .fans{
+.header .fans{
 	margin:0 7px 0 14px;
 }
 
-header ul{
+.header ul{
 	position: absolute;
-	right:206px;
-	bottom:0px;
+	right:0;
+	bottom:2px;
 }
-header li a{
+.header li a{
 	margin:0 27px;
 	font:16px 'microsoft yahei' ;
 	text-decoration: none; 
 	color: #666666;
 }
-header li a:hover{
+.header li a:hover{
 	color:#39a030;
 }
 
 
+/* ------轮播图-------*/
+.slider{
+	display: table;
+	margin:0 auto 60px auto;
+	width:100%;
+	max-width: 1652px;
+	height: 46px;
 
+
+	background-color: #aaaaaa;
+}
+
+
+/* -----------导航------------- */
+.nav{
+	display: table;
+	margin:0 auto;
+	width: 1000px;
+
+}
+.nav ul{
+	margin-left: -70px;
+}
+.nav li{
+	float:left;
+	width:33.3%;
+	box-sizing: border-box;
+	padding-left:70px;
+	font-size: 14px;
+	list-style: none;
+}
+.nav h2{
+	font:22px 'microsoft yahei';
+	margin-bottom: 16px;
+	color:#303030;
+}
+.nav p{
+	color: #656565;
+}
+.nav p,.nav a{
+	font-size: 14px;
+}
+.nav a{
+	display: inline-block;
+	color:#39a132;
+	text-decoration: none;
+	margin-top: 30px;
+}
+.nav a:hover{
+	text-decoration: underline;
+}
+.nav div{
+	display: inline-block;
+}
+.nav .left{
+	float: left;
+	width:100px;
+}
+.nav .right{
+	margin-left: 100px;
+}
