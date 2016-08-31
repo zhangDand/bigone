@@ -3,6 +3,9 @@ html,body,*{
 	padding:0;
 	font: 12px 'microsoft yahei';
 }
+a:hover{
+	text-decoration: underline;
+}
 
 
 /* ----------message-----------*/
@@ -51,7 +54,7 @@ html,body,*{
 	font:normal normal 22px/28px 'microsoft yahei';
 }
 .header em{
-	font: normal 28px/28px 'gill sans mt';
+	font: normal bold 28px/28px 'gill sans mt';
 	color: #39a030;
 }
 
@@ -206,9 +209,69 @@ html,body,*{
 	background-color: #fff;
 }
 .content .main{
-	width:959px;
+	display: inline-block;
+	width: 714px;
 }
 .content .sidebar{
 	width:223px;
 	float:right;
+	/*margin-left: 714px;*/
 }
+
+/* --------------footer部分--------- */
+
+footer{
+	display: table-cell;
+	vertical-align: middle;
+	/*box-sizing: border-box;*/
+	width:1%;
+	height:262px;
+	/*padding:0 256px;*/
+	background-color: #2c3339;
+}
+footer>*{
+	display: inline-block;
+}
+footer .logo{
+	margin:0 150px 0 256px;
+}
+
+footer h1{
+	font:normal normal 22px/28px 'microsoft yahei';
+	margin-bottom: 28px;
+	color:#39a030;
+}
+footer em{
+	font: normal bold 28px/28px 'gill sans mt';
+	color: #39a030;
+	vertical-align: -4px;
+}
+footer p,footer ul{
+	font: 12.5px/22.5px "microsoft yahei";
+	color: #bebfc0;
+}
+footer ul{
+	vertical-align: text-top;
+	margin-right: 100px;
+}
+
+footer li{
+	list-style: none;
+	margin-bottom: 14px;
+}
+footer a{
+
+	font:15px 'microsoft yahei';
+	color: #bebfc0;
+	text-decoration: none;
+}
+footer .link ul{
+	display: inline-block;
+}
+footer .link {
+	vertical-align:95px;
+}
+
+
+
+
