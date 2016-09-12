@@ -1077,7 +1077,8 @@ ns('Login',['util'],function(_){
       this.account.addEventListener('invalid',this._accountValidate.bind(this));
       this.loginForm.addEventListener('input',this._onInput.bind(this));
       this.loginForm.addEventListener('submit',this._onSubmit.bind(this));
-      this.xhr.addEventListener('readystatechange',this._stateChange.bind(this));
+      // this.xhr.addEventListener('readystatechange',this._stateChange.bind(this));
+      this.xhr.onreadystatechange=this._stateChange.bind(this)
       this.close.addEventListener('click',this._remove.bind(this))
     }
   });
@@ -1162,7 +1163,8 @@ ns('follow',['util'],function(_){
               }
           };
 
-      xhr.addEventListener('readystatechange',_stateChange);
+      // xhr.addEventListener('readystatechange',_stateChange);
+      this.xhr.onreadystatechange=_stateChange;
       xhr.open('get',url,true);
       xhr.send(null);
       return msg;
