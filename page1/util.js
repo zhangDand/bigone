@@ -3,6 +3,49 @@ if(!Element.prototype.addEventListener){
     this.attachEvent('on' + type,callback);
   }
 }
+if (!Function.prototype.bind){
+    Function.prototype.bind=function(thisObj){
+       var _func=this,_this=thisObj,
+            _params=Array.prototype.slice.call(arguments,1);
+        return function(){
+            var _localParams=Array.prototype.slice.call(arguments);
+            _params=_params.concat(_localParams);
+            _func.apply(_this,_params);
+        };
+    };
+};
+if ( !Array.prototype.forEach ) {
+  Array.prototype.forEach = function forEach( callback, thisArg ) {
+    var T, k;
+    if ( this == null ) {
+      throw new TypeError( "this is null or not defined" );
+    var O = Object(this);
+    var len = O.length >>> 0; 
+    if ( typeof callback !== "function" ) {
+      throw new TypeError( callback + " is not a function" );
+    }
+    if ( arguments.length > 1 ) {
+      T = thisArg;
+    }
+    k = 0;
+    while( k < len ) {
+      var kValue;
+      if ( k in O ) {
+        kValue = O[ k ];
+        callback.call( T, kValue, k, O );
+      }
+      k++;
+    }
+    };
+  }
+
+};
+if(!String.prototype.trim){
+  String.prototype.trim = function(){
+            return this.replace(/(^\s*)|(\s*$)/g, "");
+        }
+}
+
 //命名空间
 var ns=(function(){
   var cache={};
@@ -668,8 +711,12 @@ ns('Slider',['util'],function(_){
 
     //组件节点
     this.slider = this._layout.cloneNode(true);
-    this.slides=[].slice.call(this.slider.querySelectorAll('.slide'));
-
+    try{
+      this.slides=[].slice.call(this.slider.querySelectorAll('.slide'));
+    }catch(err){
+      this.slides=[].concat.apply([],this.slider.querySelectorAll('.slide'));
+    }
+    console.log(this.slides)
     //拖曳相关
     this.offsetWidth=this.container.offsetWidth;
     this.breakPoint=this.offsetWidth/4;
@@ -1050,7 +1097,13 @@ ns('Login',['util'],function(_){
 ns('follow',['util'],function(_){
   return function(outer){
     var $=function(selector){
-      return [].slice.call(document.querySelectorAll(selector));
+      var a;
+      try{
+        a=[].slice.call(document.querySelectorAll(selector))
+      }catch(err){
+        a=[].concat.apply([],document.querySelectorAll(selector))
+      };
+      return a;
     };
 
     var focusOff=$('.m-follow .focus-off')[0];
@@ -1638,155 +1691,5 @@ ns('Vmodal',['util'],function(_){
   });
   return Vmodal;
 })
-/**=======================================================
- */
-// var util=ns('util');
-// (function(_){
-//   console.log(_)
-//   template='<li>\
-//             <a class="link" href="">\
-//               <img class="img" src="./img/hot.jpg" height="50px" width="50px">\
-//               <p class="caption"></p>\
-//             </a>\
-//             <p class="num clearfix clearfix"><span><i></i><span></span></span></p>\
-//           </li>';
-
-//   function Hot(opt){
-//   //opt需要传入container
-//   //           url
-//   //           options
-//     _.extend(this,opt);
-//     container=this.container;
-//     this.list=[];
-//     this.jumpNum=1;
-
-//     this._get(this.url,this.options,this._callback.bind(this));
-
-//   }
-
-//   _.extend(Hot.prototype,{
-
-//     _layout:_.html2node(template),
-
-//     jump:function (num,margin,len){
-
-//       num = num || 1;
-//       margin= margin || 21;
-//       len = this.list.length || 20;
-//       for(var i=0,len=this.list.length;i<len;i++){
-//       var l=this.list[i];
-//       var hei=l.offsetHeight;
-//       var flag=(i+this.jumpNum)%len-1;
-
-//       l.style.top=(l.offsetHeight+margin)*((i+this.jumpNum)%len-1)+'px';
-//       if(flag==-1){l.style.transitionDuration='0s';}
-//       if(flag==0){l.style.transitionDuration='.5s';}
-
-
-//     }
-//       this.jumpNum=(this.jumpNum+len+num)%len;
-
-
-//     },
-//     //请求数据并执行回调
-//     _get:function(url,options,callback){
-
-//       var xhr=new XMLHttpRequest();
-
-//       function serialize (data){
-//             if(!data) return '';
-//             var pairs=[];
-//             for(var name in data){
-//               if(!data.hasOwnProperty(name)) continue;
-//               if(typeof data[name] === 'function') continue;
-//               var value = data[name].toString();
-//               // name = encodeURIComponent(name);
-//               // value = encodeURIComponent(value);
-//               pairs.push(name + '=' + value) ;
-//             }
-//             return pairs.join('&');
-//           }
-//       xhr.onreadystatechange=function(){
-//         if(xhr.readyState==4){
-//           if((xhr.status>=200 && xhr.status<300) || xhr.status==304){
-//             var text=xhr.responseText;
-//             callback(text);
-//           }else{
-//             status='当前无法连接：'+xhr.status;
-//             console.log('err:'+status);
-//           }
-//         }
-//       }
-//       url=options?url + '?' +serialize(options) : url;
-//       xhr.open('get',url);
-//       xhr.send(null);
-
-//     },
-//     //绑定返回的数据
-//     bindData:function(list,data){
-//       for(var i=0,len=list.length;i<len;i++){
-//         var l=list[i],d=data[i];
-
-//         var src=l.querySelector('.img'),
-//             link=l.querySelector('.link'),
-//             caption=l.querySelector('.caption'),
-//             num=l.querySelector('.num span>span');
-
-//         src.src=d['smallPhotoUrl'];
-//         link.href=d['providerLink'];
-//         link.title=d['name'];
-//         caption.innerText=d['name'];
-//         num.innerText=d['learnerCount'];
-//       }
-//     },
-//     dataParse:function(textArr,keyArr){
-//       var arr=[];
-//       function _getData(data,keyArr){
-//         var arr=[],obj={};
-//         for (var i = 0; i < keyArr.length; i++) {
-//           var key=keyArr[i];
-//           obj[key]=data[key];
-
-//         }
-//         return obj;
-//       }
-//       for (var i = 0; i < textArr.length; i++) {
-//         var obj;
-//         data=textArr[i];
-//         obj=_getData(data,keyArr);
-//         arr.push(obj);
-//       }
-//       return arr;
-//     },
-//     _callback:function(data){
-//       data=eval(data);
-//       data=this.dataParse(data,this.keyArr);
-
-
-//         _.log(data);
-
-
-//       for(var i=0,len=data.length;i<len;i++){
-//         var l=this._layout.cloneNode(true);
-//         this.list.push(l);
-//         container.appendChild(l);
-//       };
-
-//       this.bindData(this.list,data);
-
-//       this.jump();
-
-//     }
-//   })
-// window.Hot=Hot;
-// })(util);
-
-// console.log(ns('util'))
-
-
-
-
-
-
 
 
